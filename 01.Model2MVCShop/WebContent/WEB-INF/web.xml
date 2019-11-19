@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+					xmlns="http://java.sun.com/xml/ns/javaee" 
+					xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+					 version="3.0"
+					 metadata-complete="true">
+	
+	<context-param>
+		<param-name>pageSize</param-name>
+		<param-value>3</param-value>
+	</context-param>
+	<!-- 얘도 init param와 같이 getServletContext().getInitParameter("pageSize")로 얻을 수 있다 -->
+
+	<filter>
+		<filter-name>requestFilter</filter-name>
+		<filter-class>com.model2.mvc.filter.RequestFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>requestFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 클라이언트와 자원(Servlet, JSP) 사이의 필터
+	mapping을 저렇게 해놓음으로써 싸그리 다 필터를 거칠 수 있게끔 -->
+
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>com.model2.mvc.framework.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>resources</param-name>
+			<param-value>com/model2/mvc/resources/actionmapping.properties</param-value>
+		</init-param>
+		<!-- 
+		getServletConfig().getInitParameter("resource")로 호출 가능
+		-->
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<!--
+	servlet mapping .do를 모두 action으로 처리 action은 com.model2.mvc.framework.ActionServlet으로 이게 단일인입점(어떤 action을 취할지 결정, client의 req를 한곳으로 모이게)
+	-->
+		
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file> 
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+    </welcome-file-list>
+    <!-- 
+    <welcome-file-list> 태그는 사용자가 웹 어플리케이션의 루트컨텍스트경로 즉 서버의 루트 주소만을 입력하여 접근했을 경우 가장 처음에 띄워줄 경로를 설정하는 태그입니다. 
+    -->
+	
+</web-app>
