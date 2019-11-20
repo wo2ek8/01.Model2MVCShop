@@ -27,7 +27,7 @@ public class AddProductAction extends Action {
 		
 		if(FileUpload.isMultipartContent(request)) {
 			//==> Eclipse workspace / Project 변경시 변경할 것
-			//String temDir = "D:\\workspace03(Project&analysis)\\9941.1.Model2MVCShop(ins)\\\WebContent\\images\\uploadFiles\\";
+			//String temDir = "D:\\workspace03(Project&analysis)\\9941.1.Model2MVCShop(ins)\\WebContent\\images\\uploadFiles\\";
 			String temDir = "C:\\workspace\\01.Model2MVCShop\\WebContent\\images\\uploadFiles\\";
 			//String temDir - ".";
 			//String temDir2 = "/uploadFiles/";
